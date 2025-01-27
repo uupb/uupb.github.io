@@ -104,7 +104,7 @@
     </main>
 
     <footer>
-        hyperFixationStudios All rights reserved.
+        hyperFixationStudios, All rights reserved.
     </footer>
 </body>
 </html>
