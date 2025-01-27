@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My GitHub Pages Site</title>
+    <title>Image Place Holder ? </title>
     <style>
         /* Base styling */
         body {
@@ -85,7 +85,7 @@
 </head>
 <body>
     <header>
-        My GitHub Pages Website
+        Image Placeholder ?
     </header>
 
     <main>
@@ -104,7 +104,7 @@
     </main>
 
     <footer>
-        &copy; 2025 Your Name. All rights reserved.
+        hyperFixationStudios All rights reserved.
     </footer>
 </body>
 </html>
