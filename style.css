@@ -30,13 +30,13 @@ header {
 header img {
     max-width: 100%;
     height: auto;
-    max-height: 150px;
-    min-width: 50px; /* Optional: Prevent the image from becoming too small */
+    max-height: 600px;
+    min-width: 100px; /* Optional: Prevent the image from becoming too small */
 }
 
-@media (max-width: 600px) {
+@media (max-width: 2400px) {
     header img {
-        max-height: 100px; /* Smaller image on small screens */
+        max-height: 600px; /* Smaller image on small screens */
     }
 }
 
