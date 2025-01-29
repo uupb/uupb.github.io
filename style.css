@@ -20,21 +20,30 @@ header, footer {
 
 header {
     display: flex;
-    align-items: center; /* Vertically center the image and text */
-    justify-content: center; /* Horizontally center the content */
-    gap: 1rem; /* Add space between the image and text */       
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 100%;
+}
+
+header img {
+    max-width: 100%;
+    height: auto;
+    max-height: 150px;
+    min-width: 50px; /* Optional: Prevent the image from becoming too small */
+}
+
+@media (max-width: 600px) {
+    header img {
+        max-height: 100px; /* Smaller image on small screens */
+    }
 }
 
 header {
     font-size: 1.5rem;
     font-weight: bold;
     text-transform: uppercase;
-}
-
-header img {
-    max-width: 100%; 
-    height: auto; 
-    max-height: 80px; 
 }
 
 footer {
