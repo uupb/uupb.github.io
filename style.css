@@ -24,6 +24,12 @@ header {
     text-transform: uppercase;
 }
 
+header img {
+    max-width: 100%; 
+    height: auto; 
+    max-height: 80px; 
+}
+
 footer {
     font-size: 0.875rem;
 }
