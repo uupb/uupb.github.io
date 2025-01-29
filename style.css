@@ -19,6 +19,13 @@ header, footer {
 }
 
 header {
+    display: flex;
+    align-items: center; /* Vertically center the image and text */
+    justify-content: center; /* Horizontally center the content */
+    gap: 1rem; /* Add space between the image and text */       
+}
+
+header {
     font-size: 1.5rem;
     font-weight: bold;
     text-transform: uppercase;
