@@ -153,46 +153,90 @@ main {
     width: 100%;
 }
 
-/* Timeline */
+/* Main timeline container */
 .timeline {
+    display: flex; /* Arranges items in a row */
+    overflow-x: auto; /* Allows horizontal scrolling on small screens */
+    padding: 3rem 1rem; /* Adds space above/below for items */
     position: relative;
-    max-width: 800px;
+    max-width: 100%; /* Allows the timeline to use the full width */
     margin: 0 auto;
-    padding: 2rem 0;
+    align-items: center; /* This makes boxes fit their content's height */
+    justify-content: flex-start; /* This aligns all items to the start (left) */
 }
 
+/* The main horizontal line */
 .timeline::before {
     content: '';
     position: absolute;
-    top: 0;
-    bottom: 0;
+    top: 50%; /* Positions the line in the vertical center */
+    left: 0;
+    width: 100%; /* Stretches the line across the entire container */
+    height: 4px;
+    background-color: #6f00ff;
+    transform: translateY(-50%); /* Ensures perfect vertical centering */
+}
+
+/* Individual timeline event box */
+.timeline-item {
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    padding: 1rem;
+    margin: 0 1rem; /* Adds space between items */
+    min-width: 300px; /* Prevents items from getting too squished */
+    box-sizing: border-box;
+}
+
+/* Creates the small connector line from the box to the main line */
+.timeline-item::after {
+    content: '';
+    position: absolute;
     left: 50%;
+    transform: translateX(-50%);
     width: 4px;
-    margin-left: -2px;
+    height: 2rem; /* Length of the connector line */
     background-color: #6f00ff;
 }
 
-.timeline-item {
-    padding: 1rem;
-    margin-bottom: 2rem;
-    width: 45%;
-    box-sizing: border-box;
-    background-color: rgba(0, 0, 0, 0.8);
-    border-radius: 10px;
-    position: relative;
-}
-
+/* Position ODD items ABOVE the main line */
 .timeline-item:nth-child(odd) {
-    left: 55%;
+    margin-bottom: 16rem; /* Pushes the box up */
+}
+.timeline-item:nth-child(odd)::after {
+    top: 100%; /* Places the connector at the bottom of the box */
 }
 
+/* Position EVEN items BELOW the main line */
 .timeline-item:nth-child(even) {
-    left: 0;
+    margin-top: 16rem; /* Pushes the box down */
+}
+.timeline-item:nth-child(even)::after {
+    bottom: 100%; /* Places the connector at the top of the box */
 }
 
-.timeline-item h2 {
-    font-size: 1.25rem;
-    margin: 0.5rem 0;
+/* --- Accordion Style for Timeline --- */
+
+/* Add a pointer cursor to all timeline items to show they are clickable */
+.timeline-item {
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+}
+
+/* Add a subtle glow effect on hover or when expanded for better feedback */
+.timeline-item:hover, .timeline-item.expanded {
+    box-shadow: 0 0 15px rgba(111, 0, 255, 0.6);
+}
+
+/* Hide the job duty list items by default */
+.timeline-item li {
+    display: none;
+}
+
+/* When a timeline item has the 'expanded' class, show the list items */
+.timeline-item.expanded li {
+    display: list-item; /* Use 'list-item' to keep the bullet points */
+    margin-left: 20px; /* Add some indentation */
 }
 
 
