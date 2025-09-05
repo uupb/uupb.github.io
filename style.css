@@ -104,11 +104,14 @@ main {
 
 .image-container.full-width {
     grid-column: 1 / -1;
+    
 }
 
 .full-width {
     grid-column: 1 / -1;
+    
 }
+
 
 /* Expandable Content */
 .link-box.expandable {
@@ -157,7 +160,7 @@ main {
 .timeline {
     display: flex; /* Arranges items in a row */
     overflow-x: auto; /* Allows horizontal scrolling on small screens */
-    padding: 3rem 1rem; /* Adds space above/below for items */
+    padding: 9rem 1rem; /* Adds space above/below for items */
     position: relative;
     max-width: 100%; /* Allows the timeline to use the full width */
     margin: 0 auto;
@@ -195,13 +198,14 @@ main {
     left: 50%;
     transform: translateX(-50%);
     width: 4px;
-    height: 2rem; /* Length of the connector line */
+    height: 2rem; /* This is the visible length of the connector */
     background-color: #6f00ff;
 }
 
 /* Position ODD items ABOVE the main line */
 .timeline-item:nth-child(odd) {
-    margin-bottom: 16rem; /* Pushes the box up */
+    margin-bottom: 0; /* Reset margin */
+    transform: translateY(calc(-50% - 2rem)); /* Move the box up */
 }
 .timeline-item:nth-child(odd)::after {
     top: 100%; /* Places the connector at the bottom of the box */
@@ -209,11 +213,13 @@ main {
 
 /* Position EVEN items BELOW the main line */
 .timeline-item:nth-child(even) {
-    margin-top: 16rem; /* Pushes the box down */
+    margin-top: 0; /* Reset margin */
+    transform: translateY(calc(50% + 2rem)); /* Move the box down */
 }
 .timeline-item:nth-child(even)::after {
     bottom: 100%; /* Places the connector at the top of the box */
 }
+
 
 /* --- Accordion Style for Timeline --- */
 
