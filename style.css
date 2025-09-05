@@ -33,20 +33,27 @@ body li {
 
 /* Header Styles */
 header {
-    width: 90%;
-    padding: 1rem;
-    background-color: rgba(0, 0, 0, 0.7);
+    width: 95%;
+    padding: 2rem;
     font-size: 1.5rem;
     font-weight: bold;
     text-align: center;
     text-transform: uppercase;
     z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.7);
+    background-image: url('svg/sw3.svg');
+    transform: rotate(180deg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 header img {
     max-width: 100%;
     height: auto;
+    transform: rotate(180deg);
 }
+
 
 
 /* Main Content Styles */
@@ -248,7 +255,7 @@ main {
 
 /* Footer */
 footer {
-    width: 90%;
+    width: 95%;
     padding: 2rem;
     margin-top: auto;
     background-color: rgba(0, 0, 0, 0.7);
