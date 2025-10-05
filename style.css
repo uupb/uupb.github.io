@@ -67,6 +67,105 @@ main {
 }
 
 
+/* Carousel Styling */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 2rem auto;
+    overflow: hidden;
+    border: 2px solid #6f00ff;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 1rem;
+}
+
+.carousel-slides {
+    display: flex;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    box-sizing: border-box;
+    padding: 2rem;
+    text-align: center;
+    display: none; /* Hide all slides by default */
+}
+
+.carousel-slide.active {
+    display: block; /* Show only the active slide */
+}
+
+.carousel-slide img {
+    max-width: 150px;
+    height: auto;
+    margin-bottom: 1rem;
+}
+
+.carousel-slide h2 {
+    font-size: 1.75rem;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+.carousel-slide p {
+    font-size: 1rem;
+    color: #ccc;
+    margin-bottom: 1.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.carousel-btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: #6f00ff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+
+.carousel-btn:hover {
+    background-color: #8b3dff;
+}
+
+/* Carousel Navigation Buttons */
+.carousel-prev,
+.carousel-next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.3s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+}
+
+.carousel-next {
+    right: 1rem;
+    border-radius: 3px 0 0 3px;
+}
+
+.carousel-prev {
+    left: 1rem;
+}
+
+.carousel-prev:hover,
+.carousel-next:hover {
+    background-color: rgba(111, 0, 255, 0.8);
+}
+
+
 /* Links Grid & Boxes */
 .links-grid {
     width: 100%;
@@ -163,95 +262,6 @@ main {
     width: 100%;
 }
 
-/* Main timeline container */
-.timeline {
-    display: flex; /* Arranges items in a row */
-    overflow-x: auto; /* Allows horizontal scrolling on small screens */
-    padding: 9rem 1rem; /* Adds space above/below for items */
-    position: relative;
-    max-width: 100%; /* Allows the timeline to use the full width */
-    margin: 0 auto;
-    align-items: center; /* This makes boxes fit their content's height */
-    justify-content: flex-start; /* This aligns all items to the start (left) */
-}
-
-/* The main horizontal line */
-.timeline::before {
-    content: '';
-    position: absolute;
-    top: 50%; /* Positions the line in the vertical center */
-    left: 0;
-    width: 100%; /* Stretches the line across the entire container */
-    height: 4px;
-    background-color: #6f00ff;
-    transform: translateY(-50%); /* Ensures perfect vertical centering */
-}
-
-/* Individual timeline event box */
-.timeline-item {
-    position: relative;
-    background-color: rgba(0, 0, 0, 0.8);
-    border-radius: 10px;
-    padding: 1rem;
-    margin: 0 1rem; /* Adds space between items */
-    min-width: 300px; /* Prevents items from getting too squished */
-    box-sizing: border-box;
-}
-
-/* Creates the small connector line from the box to the main line */
-.timeline-item::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 4px;
-    height: 2rem; /* This is the visible length of the connector */
-    background-color: #6f00ff;
-}
-
-/* Position ODD items ABOVE the main line */
-.timeline-item:nth-child(odd) {
-    margin-bottom: 0; /* Reset margin */
-    transform: translateY(calc(-50% - 2rem)); /* Move the box up */
-}
-.timeline-item:nth-child(odd)::after {
-    top: 100%; /* Places the connector at the bottom of the box */
-}
-
-/* Position EVEN items BELOW the main line */
-.timeline-item:nth-child(even) {
-    margin-top: 0; /* Reset margin */
-    transform: translateY(calc(50% + 2rem)); /* Move the box down */
-}
-.timeline-item:nth-child(even)::after {
-    bottom: 100%; /* Places the connector at the top of the box */
-}
-
-
-/* --- Accordion Style for Timeline --- */
-
-/* Add a pointer cursor to all timeline items to show they are clickable */
-.timeline-item {
-    cursor: pointer;
-    transition: box-shadow 0.3s ease;
-}
-
-/* Add a subtle glow effect on hover or when expanded for better feedback */
-.timeline-item:hover, .timeline-item.expanded {
-    box-shadow: 0 0 15px rgba(111, 0, 255, 0.6);
-}
-
-/* Hide the job duty list items by default */
-.timeline-item li {
-    display: none;
-}
-
-/* When a timeline item has the 'expanded' class, show the list items */
-.timeline-item.expanded li {
-    display: list-item; /* Use 'list-item' to keep the bullet points */
-    margin-left: 20px; /* Add some indentation */
-}
-
 
 /* Footer */
 footer {
@@ -268,28 +278,17 @@ footer {
 
 
 /* Media Queries */
-@media (max-width: 768px) {
-    .timeline::before {
-        left: 20px;
-    }
-    .timeline-item {
-        width: 100%;
-        padding-left: 40px;
-        margin-bottom: 1rem;
-    }
-    .timeline-item:nth-child(odd),
-    .timeline-item:nth-child(even) {
-        left: 0;
-        margin-left: 25px;
-    }
-}
-
-
 @media (max-width: 600px) {
     header {
         font-size: 1.25rem;
     }
     footer {
         font-size: 0.75rem;
+    }
+    .carousel-slide h2 {
+        font-size: 1.5rem;
+    }
+    .carousel-slide p {
+        font-size: 0.875rem;
     }
 }
