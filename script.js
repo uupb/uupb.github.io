@@ -13,40 +13,43 @@ function toggleExpand(element) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Carousel Logic ---
-    const slides = document.querySelectorAll('.carousel-slide');
-    const prevBtn = document.querySelector('.carousel-prev');
-    const nextBtn = document.querySelector('.carousel-next');
-    let currentSlide = 0;
+    // --- Carousel Logic for multiple carousels ---
+    const carousels = document.querySelectorAll('.carousel-container');
 
-    function showSlide(index) {
-        // Hide all slides
-        slides.forEach(slide => {
-            slide.classList.remove('active');
-        });
+    carousels.forEach(carousel => {
+        const slides = carousel.querySelectorAll('.carousel-slide');
+        const prevBtn = carousel.querySelector('.carousel-prev');
+        const nextBtn = carousel.querySelector('.carousel-next');
+        let currentSlide = 0;
 
-        // Show the correct slide
-        slides[index].classList.add('active');
-    }
+        if (slides.length === 0) return; // Skip if a carousel has no slides
 
-    function nextSlide() {
-        currentSlide = (currentSlide + 1) % slides.length;
+        function showSlide(index) {
+            // Hide all slides within this specific carousel
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+            // Show the correct slide
+            slides[index].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Event Listeners for this specific carousel's buttons
+        if (prevBtn && nextBtn) {
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+        }
+        
+        // Initialize this carousel by showing its first slide
         showSlide(currentSlide);
-    }
-
-    function prevSlide() {
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-        showSlide(currentSlide);
-    }
-
-    // Event Listeners for Carousel
-    if (prevBtn && nextBtn) {
-        nextBtn.addEventListener('click', nextSlide);
-        prevBtn.addEventListener('click', prevSlide);
-    }
-    
-    // Initialize carousel by showing the first slide
-    if (slides.length > 0) {
-        showSlide(currentSlide);
-    }
+    });
 });

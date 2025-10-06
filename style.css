@@ -262,6 +262,32 @@ main {
     width: 100%;
 }
 
+/* Responsive iFrame Styling */
+.iframe-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    margin-bottom: 1rem;
+}
+
+.iframe-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 5px;
+}
+
+
+
+/* Remove styling for images that no longer exist in the carousel */
+.carousel-slide img {
+   display: none;
+}
+
 
 /* Footer */
 footer {
