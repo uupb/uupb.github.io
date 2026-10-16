@@ -14,33 +14,55 @@ function toggleExpand(element) {
 
 document.addEventListener('DOMContentLoaded', () => {
     // --- Carousel Logic for multiple carousels ---
+    // The slide strip is a flex row showing 3 slides at once (1 below 600px);
+    // buttons translate the strip one slide at a time and wrap with a jump-cut.
     const carousels = document.querySelectorAll('.carousel-container');
 
+    const visibleCount = () =>
+        window.matchMedia('(max-width: 600px)').matches ? 1 : 3;
+
     carousels.forEach(carousel => {
+        const strip = carousel.querySelector('.carousel-slides');
         const slides = carousel.querySelectorAll('.carousel-slide');
         const prevBtn = carousel.querySelector('.carousel-prev');
         const nextBtn = carousel.querySelector('.carousel-next');
-        let currentSlide = 0;
 
-        if (slides.length === 0) return; // Skip if a carousel has no slides
+        if (!strip || slides.length === 0) return; // Skip if a carousel has no slides
 
-        function showSlide(index) {
-            // Hide all slides within this specific carousel
-            slides.forEach(slide => {
-                slide.classList.remove('active');
-            });
-            // Show the correct slide
-            slides[index].classList.add('active');
+        let index = 0;
+
+        function maxIndex() {
+            return Math.max(0, slides.length - visibleCount());
+        }
+
+        function render(animate = true) {
+            if (!animate) strip.style.transition = 'none';
+            const slideWidth = 100 / visibleCount();
+            strip.style.transform = `translateX(-${index * slideWidth}%)`;
+            if (!animate) {
+                void strip.offsetWidth; // flush styles before restoring transition
+                strip.style.transition = '';
+            }
         }
 
         function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
+            if (index >= maxIndex()) {
+                index = 0;
+                render(false); // wrap with a jump-cut
+            } else {
+                index += 1;
+                render();
+            }
         }
 
         function prevSlide() {
-            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-            showSlide(currentSlide);
+            if (index <= 0) {
+                index = maxIndex();
+                render(false); // wrap with a jump-cut
+            } else {
+                index -= 1;
+                render();
+            }
         }
 
         // Event Listeners for this specific carousel's buttons
@@ -48,8 +70,14 @@ document.addEventListener('DOMContentLoaded', () => {
             nextBtn.addEventListener('click', nextSlide);
             prevBtn.addEventListener('click', prevSlide);
         }
-        
-        // Initialize this carousel by showing its first slide
-        showSlide(currentSlide);
+
+        // Keep the index valid when the visible count changes
+        window.addEventListener('resize', () => {
+            index = Math.min(index, maxIndex());
+            render(false);
+        });
+
+        // Position the strip for the initial state
+        render(false);
     });
 });
