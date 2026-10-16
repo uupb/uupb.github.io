@@ -1,3 +1,11 @@
 SVGS: sourced from https://app.haikei.app/
 
 This tutorial: https://www.youtube.com/watch?v=lPJVi797Uy0
+
+sw1-sw4: haikei wave-divider backgrounds (header/footer, 2400x400)
+
+stars-small.svg / stars-medium.svg / stars-large.svg:
+  Generated seamless 512x512 starfield tiles used by the #stars/#stars2/#stars3
+  background layers in style.css. Mostly white dots; a few twinkling stars,
+  occasional 4-point sparkles, and a faint wave-band wisp cut from sw1.svg
+  in the large layer. Regenerate with: python gen_stars.py
